@@ -1,0 +1,25 @@
+Para simular el programa en el simulador de OpenRISC 1200:
+
+a) Limpie el directorio de corridas:
+
+• $ cd <su_directorio_oprsocv2>/sim/run
+• $ make clean
+
+b) Copie los archivos .c y .elf, al directorio de corridas:
+
+• $ cp main.c main.elf <su_directorio_oprsocv2>/sim/run
+
+c) Simular el código en el simulador de OpenRISC 1200
+
+• $ cd <su_directorio_oprsocv2>/sim/run/
+• $ make rtl­test USER_ELF=$PWD/main.elf VCD=1
+• Si no hay loops infinitos la simulación correrá y se detendrá automáticamente.
+
+d) Genere de nuevo el archivo main.lst para el ELF de la simulación:
+
+• $ cd <su_directorio_oprsocv2>/sim/run/
+• $ or32­elf­objdump ­S ­h main.elf > main.lst
+
+d) En el host (fuera del contenedor) abra el resultado de la simulación
+
+• $ gtkwave <su_directorio_oprsocv2>/sim/out/main.vcd
